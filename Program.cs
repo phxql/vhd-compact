@@ -30,7 +30,6 @@ namespace VhdCompact
             if (args.Length != 1)
             {
                 PrintHelp();
-                Environment.Exit((int)ExitCode.WrongArguments);
             }
 
             var vhdFile = Path.GetFullPath(args[0]);
@@ -84,10 +83,10 @@ namespace VhdCompact
         private void Fail(ExitCode exitCode, string reason, params object[] args)
         {
             Console.Error.WriteLine(reason, args);
-            Console.ReadKey();            
-
             Console.WriteLine();
+            
             Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();            
 
             Environment.Exit((int)exitCode);
         }
@@ -162,6 +161,13 @@ namespace VhdCompact
         private void PrintHelp()
         {
             Console.WriteLine("Usage: VhdCompact.exe [Path to VHD file]");
+            Console.WriteLine("(You can also drop the VHD file on VhdCompact.exe)");
+            Console.WriteLine();
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();            
+
+            Environment.Exit((int)ExitCode.WrongArguments);
         }
 
         /// <summary>
